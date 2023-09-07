@@ -8,7 +8,7 @@ export function createOperationHandler() {
 
 const OPERATION_HANDLERS = {
 	[OPERATIONS.DIGIT_PLACEMENT]: updateCurrentNode(handleDigitNode),
-	[OPERATIONS.DOT_PLACEMENT]: handleDotPlacement,
+	[OPERATIONS.DOT_PLACEMENT]: handleDotNode,
 	[OPERATIONS.ADDITION]: updateCurrentNode(handleOperandNode(OPERANDS.ADDITION)),
 	[OPERATIONS.SUBTRACTION]: updateCurrentNode(handleOperandNode(OPERANDS.SUBTRACTION)),
 	[OPERATIONS.MULTIPLICATION]: updateCurrentNode(handleOperandNode(OPERANDS.MULTIPLICATION)),
@@ -20,7 +20,9 @@ const OPERATION_HANDLERS = {
 
 function handleDigitNode(parentNode, digit) {
 	return matchNode(parentNode, {
-		[NODES.NUMBER]: (node) => createNumberNode(node.value + digit),
+		[NODES.NUMBER]: (node) => node.value === "0"
+				? createNumberNode(digit)
+				: createNumberNode(node.value + digit),
 		[NODES.OPERAND]: (node) => node.right
 				? createOperandNode(node.operand, node.left, handleDigitNode(digit)(node.right))
 				: createOperandNode(node.operand, node.left, createNumberNode(digit)),
@@ -36,7 +38,7 @@ function handleOperandNode(operand) {
 	});
 }
 
-function handleDotPlacement(state) {
+function handleDotNode(state) {
 	return state;
 }
 

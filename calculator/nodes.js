@@ -12,7 +12,7 @@ export const OPERANDS = {
 };
 
 export function createNumberNode(value) {
-	return {type: NODES.NUMBER, value};
+	return {type: NODES.NUMBER, value: value};
 }
 
 export function createOperandNode(operand, left, right) {
