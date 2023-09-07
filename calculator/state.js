@@ -1,10 +1,16 @@
 import { createNumberNode } from "./nodes.js";
 
 export function createStateUpdater() {
-	let state = createNumberNode(0);
+	let state = {currentNode: createNumberNode(0)};
 
 	return (updateFunction) => {
+		console.log("before:", state);
 		state = updateFunction(state);
-		console.log(state);
+		console.log("after:", state);
 	};
+}
+
+
+export function updateCurrentNode(updateFunction) {
+	return ({currentNode}, ...args) => ({currentNode: updateFunction(currentNode, ...args)});
 }
