@@ -2,8 +2,8 @@ import { OPERATIONS } from "./operations.js";
 import { createNumberNode, createOperandNode, matchNode, matchOperand, NODES, OPERANDS } from "./nodes.js";
 import { updateCurrentNode } from "./state.js";
 
-export function createOperationHandler() {
-	return (operation, value) => (state) => OPERATION_HANDLERS[operation]?.(state, value);
+export function handleOperation(operation, value) {
+	return (state) => OPERATION_HANDLERS[operation]?.(state, value);
 }
 
 const OPERATION_HANDLERS = {

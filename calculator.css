@@ -25,6 +25,10 @@
 	--amber-12: hsl(25, 40.0%, 22.0%);
 }
 
+body, button {
+	all: unset;
+}
+
 .container {
 	height: 100vh;
 	width: 100vw;
@@ -33,6 +37,7 @@
 }
 
 .calculator {
+	width: 20rem;
 	font-family: Arial, sans-serif;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -48,11 +53,17 @@
 	border: 0.125rem solid var(--gray-3);
 	border-radius: 0.5rem;
 	grid-column: span 4 / span 4;
+	overflow: hidden;
 }
 
 .calculator-previous-output {
 	font-size: 1rem;
 	color: var(--gray-10);
+}
+
+.calculator-previous-output:empty::before {
+	content: "";
+	display: inline-block;
 }
 
 .calculator-current-output {
@@ -61,7 +72,6 @@
 }
 
 .calculator-action {
-	all: unset;
 	cursor: pointer;
 	display: grid;
 	place-items: center;

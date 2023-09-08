@@ -24,5 +24,5 @@ export function matchNode(node, matcher) {
 }
 
 export function matchOperand(operand, matcher) {
-	return matcher[operand]()
+	return matcher[operand]
 }
