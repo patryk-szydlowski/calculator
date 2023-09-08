@@ -27,7 +27,7 @@ function isValidOperation(operation) {
 
 
 export function attachActionButtonListeners(handleOperation, updateState) {
-	document.querySelectorAll(".calculator-action").forEach(actionElement => {
+	document.querySelectorAll(".calculator-action").forEach((actionElement) => {
 		const operation = actionElement.getAttribute("data-operation");
 		const value = actionElement.innerText;
 
@@ -40,7 +40,7 @@ export function attachActionButtonListeners(handleOperation, updateState) {
 }
 
 export function attachKeyboardListener(handleOperation, updateState) {
-	document.addEventListener("keydown", event => {
+	document.addEventListener("keydown", (event) => {
 		const operation = OPERATION_KEYS[event.key];
 		const value = event.key;
 
@@ -50,12 +50,12 @@ export function attachKeyboardListener(handleOperation, updateState) {
 	});
 }
 
-export function attachOutputRenderer(renderNode) {
+export function attachOutputRenderer(renderCalculation) {
 	const currentOutput = document.querySelector(".calculator-current-output");
 	const previousOutput = document.querySelector(".calculator-previous-output");
 
 	return ({current, previous}) => {
-		currentOutput.replaceChildren(...renderNode(current));
-		previousOutput.replaceChildren(...renderNode(previous));
+		currentOutput.replaceChildren(...renderCalculation(current));
+		previousOutput.replaceChildren(...renderCalculation(previous));
 	};
 }

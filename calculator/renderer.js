@@ -1,29 +1,55 @@
-import { matchLastNode, matchOperand, NODES, OPERANDS } from "./nodes.js";
+import { NODES, OPERANDS } from "./nodes.js";
 
-export function renderNode(nodes) {
-	return nodes.map(node => node.value).join(" ")
+export function renderCalculation(nodes) {
+	const {renderedNodes} = nodes.reduce(
+			(accumulator, node, index) => renderNode({...accumulator, index, node, nextNode: nodes.at(index + 1)}),
+			{renderedNodes: [], skippedIndices: []},
+	);
+
+	return renderedNodes;
+}
+
+function renderNode({index, node, nextNode, renderedNodes, skippedIndices}) {
+	if (skippedIndices.includes(index)) {
+		return {renderedNodes, skippedIndices};
+	}
+
+	switch (node.type) {
+		case NODES.NUMBER:
+			return {renderedNodes: [...renderedNodes, renderNumberNode(node)], skippedIndices};
+		case NODES.OPERAND:
+			return {
+				renderedNodes: [...renderedNodes, renderOperandNode(node, nextNode)],
+				skippedIndices: node.value === OPERANDS.EXPONENTIATION ? [...skippedIndices, index + 1] : skippedIndices,
+			};
+	}
 }
 
 function renderNumberNode(node) {
-	return [node.value];
+	return node.value;
 }
 
-function renderOperandNode(node) {
-	return matchOperand(node.operand, {
-		[OPERANDS.ADDITION]: renderFormattedOperandNode(node, "\u002B"),
-		[OPERANDS.SUBTRACTION]: renderFormattedOperandNode(node, "\u2212"),
-		[OPERANDS.MULTIPLICATION]: renderFormattedOperandNode(node, "\u00D7"),
-		[OPERANDS.DIVISION]: renderFormattedOperandNode(node, "\u00F7"),
-		[OPERANDS.EXPONENTIATION]: renderExponentiationOperandNode(node),
-	});
+function renderOperandNode(node, nextNode) {
+	switch (node.value) {
+		case OPERANDS.ADDITION:
+			return " \u002B ";
+		case OPERANDS.SUBTRACTION:
+			return " \u2212 ";
+		case OPERANDS.MULTIPLICATION:
+			return " \u00D7 ";
+		case OPERANDS.DIVISION:
+			return " \u00F7 ";
+		case OPERANDS.EXPONENTIATION:
+			return renderExponentiationNode(nextNode);
+	}
 }
 
-function renderFormattedOperandNode(node, formattedOperand) {
-	return [...renderNode(node.left), " ", formattedOperand, " ", ...renderNode(node.right)];
-}
-
-function renderExponentiationOperandNode(node) {
+function renderExponentiationNode(node) {
 	const wrapper = document.createElement("sup");
-	wrapper.append(...renderNode(node.right));
-	return [...renderNode(node.left), wrapper];
+
+	if (node?.value) {
+		wrapper.append(node.value);
+	}
+
+	return wrapper;
 }
