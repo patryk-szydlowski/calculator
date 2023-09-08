@@ -22,3 +22,7 @@ export function createOperandNode(operand, left, right) {
 export function matchNode(node, matcher) {
 	return matcher[node.type](node);
 }
+
+export function matchOperand(operand, matcher) {
+	return matcher[operand]()
+}

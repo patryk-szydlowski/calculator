@@ -1,5 +1,5 @@
 import { OPERATIONS } from "./operations.js";
-import { createNumberNode, createOperandNode, matchNode, NODES, OPERANDS } from "./nodes.js";
+import { createNumberNode, createOperandNode, matchNode, matchOperand, NODES, OPERANDS } from "./nodes.js";
 import { updateCurrentNode } from "./state.js";
 
 export function createOperationHandler() {
@@ -60,6 +60,25 @@ function handleNodeDeletion(rootNode) {
 	});
 }
 
-function handleCalculation(state) {
-	return state;
+function handleCalculation({currentNode, previousNode}) {
+	const calculation = handleNodeCalculation(currentNode);
+
+	return calculation
+			? {currentNode: createNumberNode(String(calculation)), previousNode: currentNode}
+			: {currentNode, previousNode};
+}
+
+function handleNodeCalculation(parentNode) {
+	return matchNode(parentNode, {
+		[NODES.NUMBER]: (node) => Number(node.value),
+		[NODES.OPERAND]: (node) => !node.right
+				? null
+				: matchOperand(node.operand, {
+					[OPERANDS.ADDITION]: handleNodeCalculation(node.left) + handleNodeCalculation(node.right),
+					[OPERANDS.SUBTRACTION]: handleNodeCalculation(node.left) - handleNodeCalculation(node.right),
+					[OPERANDS.MULTIPLICATION]: handleNodeCalculation(node.left) * handleNodeCalculation(node.right),
+					[OPERANDS.DIVISION]: handleNodeCalculation(node.left) / handleNodeCalculation(node.right),
+					[OPERANDS.EXPONENTIATION]: handleNodeCalculation(node.left) ** handleNodeCalculation(node.right),
+				}),
+	});
 }
