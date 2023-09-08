@@ -47,7 +47,9 @@ body, button {
 .calculator-output-container {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	place-items: flex-end;
+	height: 4.125rem;
 	padding-inline: 1rem;
 	padding-block: 0.5rem;
 	border: 0.125rem solid var(--gray-3);
