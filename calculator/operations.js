@@ -6,7 +6,7 @@ export const OPERATIONS = {
 	MULTIPLICATION: "multiplication",
 	DIVISION: "division",
 	EXPONENTIATION: "exponentiation",
+	DELETION: "deletion",
 	CALCULATION: "calculation",
-	RESET: "reset",
 };
 

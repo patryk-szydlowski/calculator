@@ -19,6 +19,6 @@ export function createOperandNode(operand, left, right) {
 	return {type: NODES.OPERAND, operand, left, right};
 }
 
-export function matchNode({type, ...node}, matcher) {
-	return matcher[type](node);
+export function matchNode(node, matcher) {
+	return matcher[node.type](node);
 }

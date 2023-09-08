@@ -17,8 +17,8 @@ const OPERATION_KEYS = {
 	"*": OPERATIONS.MULTIPLICATION,
 	"/": OPERATIONS.DIVISION,
 	"^": OPERATIONS.EXPONENTIATION,
+	"Backspace": OPERATIONS.DELETION,
 	"Enter": OPERATIONS.CALCULATION,
-	"Backspace": OPERATIONS.RESET,
 };
 
 function isValidOperation(operation) {
