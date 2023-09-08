@@ -1,12 +1,7 @@
-import { matchNode, matchOperand, NODES, OPERANDS } from "./nodes.js";
+import { matchLastNode, matchOperand, NODES, OPERANDS } from "./nodes.js";
 
-export function renderNode(parentNode) {
-	if (!parentNode) return [];
-
-	return matchNode(parentNode, {
-		[NODES.NUMBER]: renderNumberNode,
-		[NODES.OPERAND]: renderOperandNode,
-	});
+export function renderNode(nodes) {
+	return nodes.map(node => node.value).join(" ")
 }
 
 function renderNumberNode(node) {

@@ -2,17 +2,24 @@ import { createNumberNode } from "./nodes.js";
 
 export function createStateUpdater(onUpdate) {
 	let state = {
-		currentNode: createNumberNode("0"),
-		previousNode: null,
+		current: [createNumberNode("0")],
+		previous: [],
 	};
 
 	return (updateFunction) => {
 		state = updateFunction(state);
+		console.log(state.current);
 		onUpdate(state);
 	};
 }
 
 
-export function updateCurrentNode(updateFunction) {
-	return ({currentNode, ...state}, ...args) => ({...state, currentNode: updateFunction(currentNode, ...args)});
+export function updateCurrentCalculation(updateFunction) {
+	return ({current, ...state}, ...args) => {
+		const reversedCalculation = current.toReversed();
+		const updatedReversedCalculation = updateFunction(reversedCalculation, ...args);
+		const updatedCalculation = updatedReversedCalculation.toReversed();
+
+		return {...state, current: updatedCalculation};
+	};
 }

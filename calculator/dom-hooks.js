@@ -54,8 +54,8 @@ export function attachOutputRenderer(renderNode) {
 	const currentOutput = document.querySelector(".calculator-current-output");
 	const previousOutput = document.querySelector(".calculator-previous-output");
 
-	return ({currentNode, previousNode}) => {
-		currentOutput.replaceChildren(...renderNode(currentNode));
-		previousOutput.replaceChildren(...renderNode(previousNode));
+	return ({current, previous}) => {
+		currentOutput.replaceChildren(...renderNode(current));
+		previousOutput.replaceChildren(...renderNode(previous));
 	};
 }
