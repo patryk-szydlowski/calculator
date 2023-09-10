@@ -1,126 +1,127 @@
 :root {
-	--gray-1: hsl(0, 0%, 99.0%);
-	--gray-2: hsl(0, 0%, 97.5%);
-	--gray-3: hsl(0, 0%, 94.6%);
-	--gray-4: hsl(0, 0%, 92.0%);
-	--gray-5: hsl(0, 0%, 89.5%);
-	--gray-6: hsl(0, 0%, 86.8%);
-	--gray-7: hsl(0, 0%, 83.0%);
-	--gray-8: hsl(0, 0%, 73.2%);
-	--gray-9: hsl(0, 0%, 55.2%);
-	--gray-10: hsl(0, 0%, 50.3%);
-	--gray-11: hsl(0, 0%, 39.3%);
-	--gray-12: hsl(0, 0%, 12.5%);
-	--amber-1: hsl(39, 70.0%, 99.0%);
-	--amber-2: hsl(40, 100%, 96.5%);
-	--amber-3: hsl(45, 100%, 90.8%);
-	--amber-4: hsl(44, 100%, 85.8%);
-	--amber-5: hsl(40, 100%, 81.5%);
-	--amber-6: hsl(39, 83.6%, 75.4%);
-	--amber-7: hsl(37, 66.9%, 68.2%);
-	--amber-8: hsl(35, 59.8%, 60.0%);
-	--amber-9: hsl(42, 100%, 62.0%);
-	--amber-10: hsl(42, 100%, 55.0%);
-	--amber-11: hsl(25, 50.0%, 38.0%);
-	--amber-12: hsl(25, 40.0%, 22.0%);
+  --gray-1: hsl(0, 0%, 99%);
+  --gray-2: hsl(0, 0%, 97.5%);
+  --gray-3: hsl(0, 0%, 94.6%);
+  --gray-4: hsl(0, 0%, 92%);
+  --gray-5: hsl(0, 0%, 89.5%);
+  --gray-6: hsl(0, 0%, 86.8%);
+  --gray-7: hsl(0, 0%, 83%);
+  --gray-8: hsl(0, 0%, 73.2%);
+  --gray-9: hsl(0, 0%, 55.2%);
+  --gray-10: hsl(0, 0%, 50.3%);
+  --gray-11: hsl(0, 0%, 39.3%);
+  --gray-12: hsl(0, 0%, 12.5%);
+  --amber-1: hsl(39, 70%, 99%);
+  --amber-2: hsl(40, 100%, 96.5%);
+  --amber-3: hsl(45, 100%, 90.8%);
+  --amber-4: hsl(44, 100%, 85.8%);
+  --amber-5: hsl(40, 100%, 81.5%);
+  --amber-6: hsl(39, 83.6%, 75.4%);
+  --amber-7: hsl(37, 66.9%, 68.2%);
+  --amber-8: hsl(35, 59.8%, 60%);
+  --amber-9: hsl(42, 100%, 62%);
+  --amber-10: hsl(42, 100%, 55%);
+  --amber-11: hsl(25, 50%, 38%);
+  --amber-12: hsl(25, 40%, 22%);
 }
 
-body, button {
-	all: unset;
+body,
+button {
+  all: unset;
 }
 
 .container {
-	height: 100vh;
-	width: 100vw;
-	display: grid;
-	place-items: center;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
 }
 
 .calculator {
-	width: 20rem;
-	font-family: Arial, sans-serif;
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 0.5rem;
+  width: 20rem;
+  font-family: Arial, sans-serif;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
 }
 
 .calculator-output-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	place-items: flex-end;
-	height: 4.125rem;
-	padding-inline: 1rem;
-	padding-block: 0.5rem;
-	border: 0.125rem solid var(--gray-3);
-	border-radius: 0.5rem;
-	grid-column: span 4 / span 4;
-	overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  place-items: flex-end;
+  height: 4.125rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border: 0.125rem solid var(--gray-3);
+  border-radius: 0.5rem;
+  grid-column: span 4 / span 4;
+  overflow: hidden;
 }
 
 .calculator-previous-output {
-	font-size: 1rem;
-	color: var(--gray-10);
+  font-size: 1rem;
+  color: var(--gray-10);
 }
 
 .calculator-previous-output:empty::before {
-	content: "";
-	display: inline-block;
+  content: "";
+  display: inline-block;
 }
 
 .calculator-current-output {
-	font-size: 2rem;
-	color: var(--gray-12);
+  font-size: 2rem;
+  color: var(--gray-12);
 }
 
 .calculator-action {
-	cursor: pointer;
-	display: grid;
-	place-items: center;
-	padding-inline: 1.5rem;
-	padding-block: 0.5rem;
-	font-size: 1.2rem;
-	color: var(--gray-12);
-	background: var(--gray-3);
-	border-radius: 0.5rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding-inline: 1.5rem;
+  padding-block: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--gray-12);
+  background: var(--gray-3);
+  border-radius: 0.5rem;
 }
 
 .calculator-action-super {
-	font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .calculator-action.wide {
-	grid-column: span 3 / span 3;
+  grid-column: span 3 / span 3;
 }
 
 .calculator-action:hover {
-	background: var(--gray-4);
+  background: var(--gray-4);
 }
 
 .calculator-action.muted {
-	background: var(--gray-6);
+  background: var(--gray-6);
 }
 
 .calculator-action:active {
-	background: var(--gray-5);
+  background: var(--gray-5);
 }
 
 .calculator-action.muted:hover {
-	background: var(--gray-7);
+  background: var(--gray-7);
 }
 
 .calculator-action.muted:active {
-	background: var(--gray-8);
+  background: var(--gray-8);
 }
 
 .calculator-action.operation {
-	background: var(--amber-5);
+  background: var(--amber-5);
 }
 
 .calculator-action.operation:hover {
-	background: var(--amber-6);
+  background: var(--amber-6);
 }
 
 .calculator-action.operation:active {
-	background: var(--amber-7);
+  background: var(--amber-7);
 }

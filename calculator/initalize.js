@@ -4,9 +4,9 @@ import { createStateUpdater } from "./state.js";
 import { renderCalculation } from "./renderer.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-	const renderer = attachOutputRenderer(renderCalculation);
-	const updateState = createStateUpdater(renderer);
+  const renderer = attachOutputRenderer(renderCalculation);
+  const updateState = createStateUpdater(renderer);
 
-	attachActionButtonListeners(handleOperation, updateState);
-	attachKeyboardListener(handleOperation, updateState);
+  attachActionButtonListeners(handleOperation, updateState);
+  attachKeyboardListener(handleOperation, updateState);
 });
