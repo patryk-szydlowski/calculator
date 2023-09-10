@@ -1,4 +1,4 @@
-import { NODES, OPERANDS } from "./nodes.js";
+import { NODES, OPERANDS } from "./state.js";
 
 export function renderCalculation(nodes) {
 	const {renderedNodes} = nodes.reduce(

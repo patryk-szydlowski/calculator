@@ -1,4 +1,23 @@
-import { createNumberNode } from "./nodes.js";
+export const NODES = {
+	NUMBER: "number",
+	OPERAND: "operand",
+};
+
+export const OPERANDS = {
+	ADDITION: "+",
+	SUBTRACTION: "-",
+	MULTIPLICATION: "*",
+	DIVISION: "/",
+	EXPONENTIATION: "^",
+};
+
+export function createNumberNode(value) {
+	return {type: NODES.NUMBER, value};
+}
+
+export function createOperandNode(value) {
+	return {type: NODES.OPERAND, value};
+}
 
 export function createStateUpdater(onUpdate) {
 	let state = {
@@ -8,7 +27,6 @@ export function createStateUpdater(onUpdate) {
 
 	return (updateFunction) => {
 		state = updateFunction(state);
-		console.log(state.current);
 		onUpdate(state);
 	};
 }

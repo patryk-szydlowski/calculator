@@ -1,6 +1,5 @@
 import { OPERATIONS } from "./operations.js";
-import { createNumberNode, createOperandNode, NODES, OPERANDS } from "./nodes.js";
-import { updateCurrentCalculation } from "./state.js";
+import { createNumberNode, createOperandNode, NODES, OPERANDS, updateCurrentCalculation } from "./state.js";
 
 export function handleOperation(operation, value) {
 	return (state) => OPERATION_HANDLERS[operation]?.(state, value);
